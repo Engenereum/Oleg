@@ -34,7 +34,7 @@ class App:
             self.player.draw(self.screen)
             self.enemies.draw(self.screen)
             pygame.display.flip()
-            self.clock.tick(30)
+            self.clock.tick(60)
 
 
 if __name__ == "__main__":
