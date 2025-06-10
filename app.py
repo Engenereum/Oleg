@@ -1,10 +1,12 @@
 import pygame
+
+import interface
 from enemy import spawn
 from enviroment import Environment
 from player import Player
 
 def create_cursor():
-    surface = pygame.image.load("2/City_locator_20.svg.png")
+    surface = pygame.image.load("2/closshair.png")
     hotspot = (25, 25)
     surface = pygame.transform.scale(surface, (50,50))
     cursor = pygame.cursors.Cursor(hotspot, surface)
@@ -18,6 +20,7 @@ class App:
         self.map = Environment(self.screen)
         self.enemies = spawn(5, self.screen)
         pygame.mouse.set_cursor(create_cursor())
+        self.interface = interface.Interface()
 
     def run(self):
         running = True
@@ -33,10 +36,13 @@ class App:
             self.map.draw(self.screen)
             self.player.draw(self.screen)
             self.enemies.draw(self.screen)
+            self.interface.draw(self.screen, 5)
+
             pygame.display.flip()
-            self.clock.tick(90)
+            self.clock.tick(30)
 
 
 if __name__ == "__main__":
+    pygame.init()
     app = App()
     app.run()
